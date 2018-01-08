@@ -25,6 +25,7 @@ body {
 <body>
 
 <form name="BoardViewForm" method="post">
+<!-- summary는 테이블요약을 지정한다 (테이블의 설명) -->
 	<table summary="전체 테이블 구성">
 		<tr>
 			<td><div align="center"><h3><b>글읽기</b></h3></div></td>
@@ -61,12 +62,12 @@ body {
 		<tr>
 			<td align=center colspan=2>
 			<hr size=1>
-			<div align=center>
-			[ <input type="button" value="목록" onclick="move('Borad_List.jsp');"> 	|
-			<input type="button" value="수정" onclick="move('Borad_Update.jsp');">		|
-			<input type="button" value="답변" onclick="move('Borad_Reply.jsp');">		|
-			<input type="button" value="삭제" onclick="move('Borad_Delete.jsp');">		]<br>
-			</div>
+				<div align=center>
+					[ <input type="button" value="목록" onclick="move('Borad_List.jsp');"> 	|
+					<input type="button" value="수정" onclick="move('Borad_Update.jsp');">		|
+					<input type="button" value="답변" onclick="move('Borad_Reply.jsp');">		|
+					<input type="button" value="삭제" onclick="move('Borad_Delete.jsp');">		]<br>
+				</div>
 			</td>
 		</tr>
 	</table>

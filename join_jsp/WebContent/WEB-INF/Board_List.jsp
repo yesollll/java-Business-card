@@ -17,6 +17,7 @@ body{
 	}
 </script>
 </head>
+
 <body>
 <!-- marquee는 움직이는 텍스트 만드는 태그 
 alternate는 좌우로 왔다갔다함  scrolldelay는 스크롤이 되는 시간 간격을 1/100초 단위로 지정-->
@@ -69,7 +70,7 @@ alternate는 좌우로 왔다갔다함  scrolldelay는 스크롤이 되는 시�
 			</tr>
 		</tfoot>
 	</table>
-		<input type="button" value="처음으로" onClick="move('Borad_List.jsp');" />
-		<input type="button" value="글쓰기" onClick="move('Borad_Write.jsp');" />
+	<input type="button" value="처음으로" onClick="move('Borad_List.jsp');" />
+	<input type="button" value="글쓰기" onClick="move('Borad_Write.jsp');" />
 </body>
 </html>
