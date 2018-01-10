@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 별명지정(중복 x) -->
+<mapper namespace="board.mybatis.boardMapper">
+
+<!-- resultType:sqlmapConfig.xml에서 알리아스 설정 때문에 씀 -->
+<!-- select 시작 -->
+	<select id="boardList" resultType="BoardDto" useCache="true">
+		select * from board_jsp order by pos asc
+	</select>
+	<select id="boardSearch" parameterType="map" resultType="BoardDto">
+		select * from board_jsp where ${keyfield} like '%${keyword}%' order by pos asc
+	</select>
+	<select id="findBySeq" parameterType="int" resultType="BoardDto">
+		select * from board_jsp where seq = #{seq}
+	</select>
+	<select id="preView" parameterType="int" resultType="String">
+		select content from board_jsp where seq = #{seq}
+	</select>
+	
+<!-- 본문 읽기 시작 -->
+	<update id="readContentCount" parameterType="int">
+		update board_jsp set count = count + 1 where seq = #{seq}
+	</update>
+	<update id="upPos">
+		update board_jsp set pos = pos + 1
+	</update>
+<!-- 글쓰기 시작 -->
+	<insert id="insertBoard" parameterType="BoardDto">
+		insert into board_jsp(seq,name,email,homepage,title,content,password,count,regdate,pos,depth)
+		select case count(*) when 0 than 1 else max(seq) + 1 end,#{name},#{email},#{homepage},#{title},#{content},#{password},0,curdate(),0,0 from board_jsp
+	</insert>
+<!-- 글수정 시작 -->
+	<update id="updateBoard" parameterType="map">
+		update board_jsp set title=#{dto.title}, content=#{dto.content}, email=#{dto.email}, name=#{dto.name}
+			where seq=#{dto.seq} and password=#{password}
+	</update>
+<!-- 글삭제와 넘어가는 화면 -->
+	<select id="deleteView" parameterType="int" resultType="String">
+		select password from board_jsp where seq=#{seq}
+	</select>
+	<delete id="deleteBoard" parameterType="map">
+		delete from board_jsp where seq=#{seq} and password=#{storPass}
+	</delete>
+<!-- 답변달기와 넘어가는 화면 -->
+	<insert id="replyboard" parameterType="BoardDto">
+		insert intp board_jsp(seq,name,email,homepage,title,content,password,count,regdate,pos,depth)
+		select case count(*) when 0 than 1 else max(seq) + 1 end,#{name},#{email},#{homepage},#{title},#{content},#{password},0,curdate(),#{pos}+1,#{depth}+1 from board_jsp
+	</insert>
+	<update id="replyUpPos" parameterType="BoardDto">
+		update board_jsp set pos = pos +1 where pos > #{pos}
+	</update>
+	
+</mapper>

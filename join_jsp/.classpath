@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="C:/bigdata/dev_jsp/lib/jstl.jar"/>
 	<classpathentry kind="lib" path="C:/bigdata/dev_jsp/lib/mongo-java-driver-2.13.0-20141111.194004-18.jar"/>
 	<classpathentry kind="lib" path="C:/bigdata/dev_jsp/lib/standard.jar"/>
+	<classpathentry kind="lib" path="C:/bigdata/dev_jsp/lib/mybatis-3.2.3.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
